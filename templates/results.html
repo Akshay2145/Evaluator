@@ -17,98 +17,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
     <!--- Style File connnetion-->
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
 
+    <link rel="icon" href="../static/images/letter-e.png">
 
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="/static/favicon_io/site.webmanifest">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/css/result_style.css">
 
     <!-- title -->
-    <title>CheckMyAnswer</title>
+    <title>Evaluator</title>
 
-    <!-- style -->
-    <style>
-        * {
-            font-family: 'Ubuntu', sans-serif;
-        }
-
-        div.container {
-            margin-top: 20px;
-        }
-
-        /*
-        .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-            background-color: rgb(255 216 180 / 0.9) !important;
-        }
-        */
-
-        .login-wrap {
-            width: 100%;
-            margin: auto;
-            margin-top: 15px;
-            max-width: 600px;
-            min-height: 630px;
-            position: relative;
-            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
-             0 17px 50px 0 rgba(0, 0, 0, 0.19);
-        }
-        .login-html {
-         width: 100%;
-         height: 100%;
-         position: absolute;
-         padding: 30px 70px 50px 70px;
-         background: white;
-        }
-        .login-wrap1 {
-            width: 100%;
-            margin: auto;
-            margin-top: 15px;
-            max-width: 550px;
-            min-height: 285px;
-            position: relative;
-            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
-             0 17px 50px 0 rgba(0, 0, 0, 0.19);
-        }
-        .login-html1 {
-         width: 100%;
-         height: 100%;
-         position: absolute;
-         padding: 30px 70px 50px 70px;
-         background: whitesmoke;
-        }
-        div.container h1{
-            color: greenyellow;
-            font-size: 40px;
-            font-weight: 600;
-            padding-top: -30px;
-        } 
-        div.container h2{
-            font-weight: 500;
-        }
-        div.container label{
-            font-weight: 500;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            background: -webkit-linear-gradient(left, #003366,#004080,#0059b3, #0073e6);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* height: 100vh; */
-        }
-    </style>
+    
 
 </head>
 
 <body>
-    <div class="container" radius="5rem">
+    <div class="container" >
         <center>
             <h1>Evaluator</h1>
         </center>
@@ -116,29 +40,33 @@
         <!-- Question & Model Answer -->
         <div class="row">
             <!-- For student & model answer -->
-            <div class="col">
-                <div class="login-wrap">
-                    <div class="login-html">
+            <div class="col" >
+                <div class="login-wrap" style=" border-radius: 25px;">
+                    <div class="login-html" style=" border-radius: 25px;">
                 <form action="/predict" method="POST">
                     <!-- <div class="mb-3">
                         <label for="Question" class="form-label"> Question)  What is Machine Learning. </label>
                     </div> -->
                     <div class="mb-3">
-                        <label for="Student answer" class="form-label">Student Answer:</label>
+                        <label for="Student answer" class="form-label" style="font-size: large;"> Student Answer:</label>
                         <!-- <textarea class="form-control" id="student_ans" name="student_ans" placeholder="Enter your text here..." required style="height: 200px;">{{dict['student_ans']}}</textarea> -->
-                        <embed src="answersheet.pdf" frameborder="1px" id = "student_ans" name="student_ans" height="200px" width="100%"></embed>
+                        <iframe src="../static/answersheet.pdf" frameborder="1px" id = "student_ans" name="student_ans" height="200px" width="100%"  style="border: 2px black;"></iframe>
                     </div>
                     <div class="mb-3">
-                        <label for="Model answer" class="form-label">Model Answer:</label>
-                        <embed src="answersheet.pdf" frameborder="1px" id = "model_ans" name="model_ans" height="200px" width="100%"></embed>
+                        <label for="Model answer" class="form-label"style="font-size: large;">Model Answer:</label>
+                        <iframe src="..\static\model_answersheet.pdf" frameborder="1px" id = "model_ans" name="model_ans" height="200px" width="100%"></iframe>
                     </div>
                     <div class="row">
                         <div class="col d-grid">
-                            <input class="btn btn-outline-secondary" type="reset" value="reset">
+                            <!-- <a href="/dashboard">
+                                <input class="btn btn-outline-secondary" type="reset" value="reset">
+                            </a> -->
+                            <a href="/dashboard" class="btn btn-outline-secondary" role = " button"  >Reset </a>
+                            
                         </div>
 
                         <div class="col d-grid">
-                            <button type="submit" class="btn btn-outline-warning" id="submit_msg">Submit</button>
+                            <button type="submit" class="btn btn-outline-primary" id="submit_msg">Submit</button>
                         </div>
                     </div>
                 </form>
@@ -147,15 +75,15 @@
             </div>
             <!-- For results -->
             <div class="col">
-                <div class="login-wrap1">
-                    <div class="login-html1">
+                <div class="login-wrap1" style=" border-radius: 25px;">
+                    <div class="login-html1" style=" border-radius: 25px;">
                 <hr>
                 <div class="row">
                     <div class="col-9">
                         <h4>Marks</h4>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-3" style=" border-radius: 25px;">
                         <h4>{{dict["marks"]}}</h4>
                     </div>
 

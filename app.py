@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, send_from_directory
 # from flask_wtf import FlaskForm
 # from wtforms import StringField,PasswordField,SubmitField
 # from wtforms.validators import DataRequired, Email, ValidationError
@@ -117,11 +117,11 @@ def upload():
         if user:
             if request.method == 'POST':
                 answersheet = request.files['pdf1']
-                answersheet.save("answersheet.pdf")
+                answersheet.save("static/answersheet.pdf")
                 model_answersheet = request.files['pdf2']
-                model_answersheet.save("model_answersheet.pdf")
-                
-                return render_template("results.html", answersheet=answersheet,model_answersheet=model_answersheet)
+                model_answersheet.save("static/model_answersheet.pdf")
+
+                return render_template('results.html',)
     return redirect(url_for('login'))
                               
 @app.route('/results')
